@@ -17,19 +17,19 @@ this information. Here you should create a Webhook with the event `order/paid` a
 your backend.
 
 The `app/suspended` and `app/resumed` events refer to
-the [suspension of API access due to lack of payment](https://github.com/zala/zala-api-docs/#suspension-of-api-access-due-to-lack-of-payment).
+the [suspension of API access due to lack of payment](https://github.com/zala-team/zala-api-docs/#suspension-of-api-access-due-to-lack-of-payment).
 
 You are not allowed to use a localhost/zala domain for webhooks.
 
 ## Properties
 
-| Property   | Explanation                                                                                        |
-|------------|----------------------------------------------------------------------------------------------------|
-| id         | The unique numeric identifier for the Webhook                                                      |
-| url        | The URL where the webhook should send the POST request when the event occurs. **Must be HTTPS**.   |
-| event      | The event that will trigger the webhook                                                            |
-| created_at | Date when the Webhook was created in [ISO 8601 format](http://en.wikipedia.org/wiki/ISO_8601)      |
-| updated_at | Date when the Webhook was last updated in [ISO 8601 format](http://en.wikipedia.org/wiki/ISO_8601) |
+| Property  | Explanation                                                                                        |
+|-----------|----------------------------------------------------------------------------------------------------|
+| id        | The unique numeric identifier for the Webhook                                                      |
+| url       | The URL where the webhook should send the POST request when the event occurs. **Must be HTTPS**.   |
+| event     | The event that will trigger the webhook                                                            |
+| createdAt | Date when the Webhook was created in [ISO 8601 format](http://en.wikipedia.org/wiki/ISO_8601)      |
+| updatedAt | Date when the Webhook was last updated in [ISO 8601 format](http://en.wikipedia.org/wiki/ISO_8601) |
 
 ### Parameters
 
@@ -51,17 +51,11 @@ Also, every webhook will send custom parameters, as follows:
 
 #### Example webhook content
 
-```javascript
+```json
 {
-    'business_id'
-:
-    'acme_business',
-        'event'
-:
-    'order/created',
-        'id'
-:
-    1248601
+  "business_id": "acme_business",
+  "event": "order/created",
+  "id": 1248601
 }
 ```
 
@@ -105,17 +99,17 @@ Receive a list of all Webhooks for your application.
 ```json
 [
   {
-    "created_at": "2013-01-03T09:11:51-03:00",
+    "createdAt": "2013-01-03T09:11:51-03:00",
     "event": "app/uninstalled",
     "id": 101,
-    "updated_at": "2013-03-11T09:14:11-03:00",
+    "updatedAt": "2013-03-11T09:14:11-03:00",
     "url": "https://myapp.com/uninstall"
   },
   {
-    "created_at": "2013-04-07T09:11:51-03:00",
+    "createdAt": "2013-04-07T09:11:51-03:00",
     "event": "order/created",
     "id": 5670,
-    "updated_at": "2013-04-08T11:11:51-03:00",
+    "updatedAt": "2013-04-08T11:11:51-03:00",
     "url": "https://myapp.com/order_created_hook"
   }
 ]
@@ -131,10 +125,10 @@ Receive a single Webhook
 
 ```json
 {
-  "created_at": "2013-04-07T09:11:51-03:00",
+  "createdAt": "2013-04-07T09:11:51-03:00",
   "event": "order/created",
   "id": 5670,
-  "updated_at": "2013-04-08T11:11:51-03:00",
+  "updatedAt": "2013-04-08T11:11:51-03:00",
   "url": "https://myapp.com/order_created_hook"
 }
 ```
@@ -178,10 +172,10 @@ Create a new Webhook
 
 ```json
 {
-  "created_at": "2013-06-01T15:12:15-03:00",
+  "createdAt": "2013-06-01T15:12:15-03:00",
   "event": "order/created",
   "id": 8901,
-  "updated_at": "2013-06-01T15:12:15-03:00",
+  "updatedAt": "2013-06-01T15:12:15-03:00",
   "url": "https://myapp.com/order_created_hook"
 }
 ```
@@ -194,10 +188,10 @@ Modify an existing Webhook
 
 ```json
 {
-  "created_at": "2013-04-07T09:11:51-03:00",
+  "createdAt": "2013-04-07T09:11:51-03:00",
   "event": "order/created",
   "id": 5670,
-  "updated_at": "2013-04-08T11:11:51-03:00",
+  "updatedAt": "2013-04-08T11:11:51-03:00",
   "url": "https://myapp.com/order_created_hook"
 }
 ```
@@ -206,10 +200,10 @@ Modify an existing Webhook
 
 ```json
 {
-  "created_at": "2013-04-07T09:11:51-03:00",
+  "createdAt": "2013-04-07T09:11:51-03:00",
   "event": "order/created",
   "id": 5670,
-  "updated_at": "2013-06-01T12:11:14-03:00",
+  "updatedAt": "2013-06-01T12:11:14-03:00",
   "url": "https://myapp.com/order_created_hook"
 }
 ```

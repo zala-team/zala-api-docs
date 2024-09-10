@@ -1,112 +1,50 @@
-Store
+Venues
 ======
 
-The Store resource contains general settings and information about a Zala's store.
+The Venue resource contains information about all Zala's business's venues.
 
 Properties
 ----------
 
-| Property          | Explanation                                                                                   |
-| ----------------- | --------------------------------------------------------------------------------------------- |
-| id                | The unique numeric identifier for the Store                                                   |
-| name              | List of the names of the Store, in every language supported by the store                      |
-| description       | List of the descriptions of the Store, in every language supported by the store               |
-| type              | Store type. Examples are "clothing", "sports", "electronic"                                   |
-| email             | Store owner's e-mail                                                                          |
-| logo              | Store logo URL, starting with // (or null if it has no logo)                                  |
-| contact_email     | Store's contact e-mail                                                                        |
-| facebook          | Store's Facebook URL                                                                          |
-| twitter           | Store's Twitter URL                                                                           |
-| google_plus       | Store's G+ URL                                                                                |
-| instagram         | Store's Instagram URL                                                                         |
-| pinterest         | Store's Pinterest URL                                                                         |
-| blog              | Store's blog URL                                                                              |
-| address           | Store's address                                                                               |
-| phone             | Store's phone                                                                                 |
-| business_id       | Business identifier (different for each country) of the company who owns the store. Brazil options: number of CPF or CNPJ. Argentina options: DNI, CUIL or CUIT.            |
-| business_name     | Business name of the company who owns the store                                               |
-| business_address  | Business address of the company who owns the store                                            |
-| customer_accounts | "optional" if the customer is allowed to checkout as guest. "mandatory" if not.               |
-| country           | Store's country in [ISO 3166-1 format](http://en.wikipedia.org/wiki/ISO_3166-1)               |
-| languages         | Store available languages with its currency and whether or not is active                      |
-| domains           | List of store's domains                                                                       |
-| current_theme	    | Store's current theme                          						    |
-| main_language     | Store's main language                                                                         |
-| main_currency     | Store's main currency in [ISO 4217 format](http://en.wikipedia.org/wiki/ISO_4217)             |
-| admin_language    | Store's admin language                                                                        |
-| created_at        | Date when the Store was created in [ISO 8601 format](http://en.wikipedia.org/wiki/ISO_8601)   | 
+| Property    | Explanation                                                                                 |
+|-------------|---------------------------------------------------------------------------------------------|
+| id          | The unique identifier for the Venue (UUID)                                                  |
+| name        | Business displayable name of the venue                                                      |
+| description | A brief description of the business venue                                                   |
+| primary     | Will be true if this is the main branch of the business                                     |
+| photoUrl    | A picture representing the venue                                                            |
+| address1    | Main street of the venue                                                                    |
+| address2    | Optional information about the location of the venue                                        |
+| city        | Venue's city                                                                                |
+| state       | Venue's state. Like Buenos Aires or CABA                                                    |
+| zipCode     | Venue's zipCode in string format                                                            |
+| createdAt   | Date when the Venue was created in [ISO 8601 format](http://en.wikipedia.org/wiki/ISO_8601) |
+| updatedAt   | Date when the Venue was updated in [ISO 8601 format](http://en.wikipedia.org/wiki/ISO_8601) |
 
 Endpoints
 ---------
 
-### GET /store
+### GET /venues
 
-Receive a single Store.
+Receive the list of Business's venues.
 
-
-| Parameter      | Explanation                                                                                      |
-| -------------- | ------------------------------------------------------------------------------------------------ |
-| fields         | Comma-separated list of fields to include in the response                                        |
-
-
-#### GET /store
+#### GET /venues
 
 `HTTP/1.1 200 OK`
 
 ```json
-{
-  "address": null,
-  "admin_language": "pt",
-  "blog": null,
-  "business_id": null,
-  "business_name": null,
-  "business_address": null,
-  "contact_email": "contact@pokestore.com",
-  "country": "BR",
-  "created_at": "2013-01-01T05:12:51-03:00",
-  "customer_accounts": "optional",
-  "description": {
-      "en": "",
-      "es": "",
-      "pt": ""
-  },
-  "domains": [
-    "www.pokestore.com",
-    "www.another.com"
-  ],
-  "email": "owner@pokestore.com",
-  "facebook": "http://www.facebook.com/pokestore",
-  "google_plus": "http://plus.google.com/+pokestore",
-  "id": 1234,
-  "instagram": "http://www.instagram.com/pokestore",
-  "languages": {
-    "en": {
-      "currency" : "USD",
-      "active": true
-    },
-    "es": {
-      "currency" : "ARS",
-      "active": false
-    },
-    "pt": {
-      "currency" : "BRL",
-      "active": true
-    }
-  },
-  "logo": "//d26lpennugtm8s.cloudfront.net/stores/046/themes/common/logo-ff622335866ee56df3bceed2e9d41469.png",
-  "main_currency": "BRL",
-  "current_theme": "luxury",
-  "main_language": "pt",
-  "name": {
-      "en": "Poké Store",
-      "es": "Poké Tienda",
-      "pt": "Poké Loja"
-  },
-  "original_domain" : "pokeloja.nuvemshop.com.br",
-  "phone": null,
-  "pinterest": "http://www.pinterest.com/pokestore",
-  "plan_name": "Business",
-  "type": null,
-  "twitter": "http://www.twitter.com/pokestore"  
-}
+[{
+  "id": "52e15a31-639a-41fe-ac7e-d41841934aaf",
+  "primary": true,
+  "name": "Downtown",
+  "photoUrl": null,
+  "description": "",
+  "address1": "Av. Siempre Viva 123",
+  "address2": null,
+  "city": "Downtown",
+  "state": "Springfield",
+  "zipCode": "1706",
+  "createdAt": "2024-06-30T19:26:46",
+  "venueId": "52e15a31-639a-41fe-ac7e-d41841934aaf"
+}]
 ```

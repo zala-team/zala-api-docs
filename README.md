@@ -41,7 +41,7 @@ We follow the OAuth 2 framework for letting users authorize your application to 
 when a user installs it you can obtain an access token (a secret string denoting your rights over his business), which
 you have to include in the header of every request (as shown in the above example).
 
-Read the [authentication guide](https://github.com/zala/zala-api-docs/blob/master/resources/authentication.md) to get
+Read the [authentication guide](https://github.com/zala-team/zala-api-docs/blob/master/resources/authentication.md) to get
 started.
 
 
@@ -160,7 +160,7 @@ Being a monthly subscription service, it's possible that a business will not ren
 In this case, the business will go offline and the API will be inaccessible.
 
 In either case, all API calls will return a `402 Payment Required`
-response, [Webhooks](https://github.com/zala/zala-api-docs/blob/master/resources/webhook.md) will not be called. Please
+response, [Webhooks](https://github.com/zala-team/zala-api-docs/blob/master/resources/webhook.md) will not be called. Please
 make sure you handle this error code to notify the user that he needs to resume his payment instead of displaying a
 generic server error.
 
@@ -168,14 +168,14 @@ Once the required payment is made, the API becomes accessible again.
 
 API resources
 
-* [Business](https://github.com/zala/zala-api-docs/blob/master/resources/business.md)
-* [Customer](https://github.com/zala/zala-api-docs/blob/master/resources/customer.md)
-* [Order](https://github.com/zala/zala-api-docs/blob/master/resources/order.md)
-* [Service](https://github.com/zala/zala-api-docs/blob/master/resources/service.md)
-* [Service Prices](https://github.com/zala/zala-api-docs/blob/master/resources/service_price.md)
-* [Service Variant](https://github.com/zala/zala-api-docs/blob/master/resources/service_variant.md)
-* [Venue](https://github.com/zala/zala-api-docs/blob/master/resources/venue.md)
-* [Webhook](https://github.com/zala/zala-api-docs/blob/master/resources/webhook.md)
+* [Business](https://github.com/zala-team/zala-api-docs/blob/master/resources/business.md)
+* [Customer](https://github.com/zala-team/zala-api-docs/blob/master/resources/customer.md)
+* [Order](https://github.com/zala-team/zala-api-docs/blob/master/resources/order.md)
+* [Service](https://github.com/zala-team/zala-api-docs/blob/master/resources/service.md)
+* [Service Prices](https://github.com/zala-team/zala-api-docs/blob/master/resources/service_price.md)
+* [Service Variant](https://github.com/zala-team/zala-api-docs/blob/master/resources/service_variant.md)
+* [Venue](https://github.com/zala-team/zala-api-docs/blob/master/resources/venue.md)
+* [Webhook](https://github.com/zala-team/zala-api-docs/blob/master/resources/webhook.md)
 
 Help us make it better
 ----------------------

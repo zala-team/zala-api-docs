@@ -8,8 +8,8 @@ We provide authorization and user authentication by a restricted form of OAuth 2
 
 ## Introduction
 
-When creating an app, you'll be prompted to complete some information regarding your application URLs ([see URLs](https://github.com/zala/zala-api-docs/blob/master/resources/authentication.md#urls)). 
-You also have to select the scopes your App needs and set a redirection URL, which is the URL where we will redirect the client once the application is installed. The scopes specify the resources for which the app is asking authorization of its users ([see Scopes](https://github.com/zala/zala-api-docs/blob/master/resources/authentication.md#scopes)). The redirection URL is used as part of the authorization flow (see below).
+When creating an app, you'll be prompted to complete some information regarding your application URLs ([see URLs](https://github.com/zala-team/zala-api-docs/blob/master/resources/authentication.md#urls)). 
+You also have to select the scopes your App needs and set a redirection URL, which is the URL where we will redirect the client once the application is installed. The scopes specify the resources for which the app is asking authorization of its users ([see Scopes](https://github.com/zala-team/zala-api-docs/blob/master/resources/authentication.md#scopes)). The redirection URL is used as part of the authorization flow (see below).
 
 ## Authorization flow
 
@@ -35,7 +35,7 @@ Assume that your app has:
 4. Then you do:
 
 ```sh
-curl -d '{"client_id": "0000", "client_secret": "xxxxxxxx", "grant_type": "authorization_code", "code": "xxxxxxxx" }' \
+curl -d '{"clientId": "0000", "clientSecret": "xxxxxxxx", "grantType": "authorization_code", "code": "xxxxxxxx" }' \
 -X POST "https://zala.app/apps/authorize/token"
 ```
 
@@ -43,10 +43,10 @@ and receive:
 
 ```json
 {
-  "access_token": "61181d08b7e328d256736hdcb671c3ce50b8af5",
-  "token_type": "bearer",
+  "accessToken": "61181d08b7e328d256736hdcb671c3ce50b8af5",
+  "tokenType": "bearer",
   "scope": "read_orders,read_services,read_transactions",
-  "user_id": "acme_business"
+  "userId": "acme_business"
 }
 ```
 
@@ -72,7 +72,7 @@ Apps should only ask for the access scopes they need. If an app only needs to re
 
 **If you ask for any write scope, the read scope is implied.**
 
-As [Webhooks](https://github.com/zala/zala-api-docs/blob/master/resources/webhook.md) rely on other resources, you will only be able to register webhooks for the resources you were granted permission to use.
+As [Webhooks](https://github.com/zala-team/zala-api-docs/blob/master/resources/webhook.md) rely on other resources, you will only be able to register webhooks for the resources you were granted permission to use.
 
 The available scopes for the API are:
 
