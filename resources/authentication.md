@@ -83,7 +83,6 @@ The available scopes for the API are:
   - Service Variant
 - read_customers
   - Customer
-  - Customer Address
   - Customer Pets
 - read_orders
   - Order
