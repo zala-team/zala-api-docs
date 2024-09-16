@@ -7,6 +7,8 @@ An order is created when a customer completes the checkout process.
 > [Get all orders](#GET-orders)
 >
 > [Get an order](#GET-ordersid)
+>
+> [Cancel an order](#POST-ordersidcancel)
 
 ## Properties
 
@@ -256,6 +258,117 @@ Receive a single Order
         "createdAt": "2024-06-30T19:37:41"
       },
       "status": "PENDING",
+      "startsAt": "2024-09-06T17:00:00",
+      "timezone": "America/Argentina/Buenos_Aires",
+      "durationInMinutes": 30,
+      "subtotal": {
+        "value": 20000.00,
+        "currency": "ARS"
+      },
+      "timesRescheduled": 0,
+      "endsAt": "2024-09-06T17:30:00",
+      "utcStartsAt": "2024-09-06T20:00:00",
+      "utcEndsAt": "2024-09-06T20:30:00",
+      "createdAt": "2024-08-30T02:32:42",
+      "updatedAt": "2024-08-30T02:32:42"
+    }
+  ],
+  "payments": [],
+  "total": {
+    "value": 20000.00,
+    "currency": "ARS"
+  },
+  "createdAt": "2024-08-30T02:32:42",
+  "active": true,
+  "guest": false,
+  "firstBookingFee": null,
+  "downPaymentTotal": null
+}
+```
+
+### POST /orders/{id}/cancel
+
+Cancel a single Order only if none of their bookings have started. 
+
+| Parameter      | Explanation                                                                                        |
+|----------------|----------------------------------------------------------------------------------------------------|
+| notifyCustomer | Notify the customer of the cancellation of their bookings. Default value is `true`                 |
+| refundCustomer | Attempt to refund customer for all charged amount using payment providers. Default value is `true` |
+
+
+#### POST /orders/450789469/cancel
+
+`HTTP/1.1 200 OK`
+
+```json
+{
+  "id": 124156,
+  "customer": {
+    "id": "d0906db4-af79-4144-bf0f-2dbede77a15b",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john@doe.com.ar",
+    "birthDate": "2013-08-01",
+    "phone": "+549111111999",
+    "identifier": null,
+    "pets": [
+      {
+        "id": "7e5209fe-8a80-41b8-b1a7-9addfd938029",
+        "name": "Scooby",
+        "metadata": "{\"size\":\"MEDIUM\"}",
+        "type": "DOG",
+        "familyType": "ANIMAL",
+        "createdAt": "2024-08-30T02:32:42"
+      }
+    ]
+  },
+  "status": "CANCELLED",
+  "paymentType": "AT_THE_PROPERTY",
+  "bookings": [
+    {
+      "id": "5583d0c8-68a1-48b3-b99a-fe1cc64c6f99",
+      "service": {
+        "id": "63cae9e3-44b0-4bd2-8fa5-e5962960aa7c",
+        "venue": {
+          "id": "52e15a31-639a-41fe-ac7e-d41841934aaf",
+          "primary": true,
+          "name": "Downtown",
+          "photoUrl": null,
+          "description": "",
+          "address1": "Av. Siempre Viva 123",
+          "address2": null,
+          "city": "Downtown",
+          "state": "Springfield",
+          "zipCode": "1706",
+          "active": true,
+          "createdAt": "2024-06-30T19:26:46",
+          "venueId": "52e15a31-639a-41fe-ac7e-d41841934aaf"
+        },
+        "venueId": "52e15a31-639a-41fe-ac7e-d41841934aaf",
+        "name": "Acme Service",
+        "description": null,
+        "photoUrl": null,
+        "link": "acme-service",
+        "locationType": "AT_ADDRESS",
+        "pricingType": "PAID",
+        "downPaymentAmount": null,
+        "selectionType": "SIMPLE",
+        "downPaymentType": null,
+        "allowedPaymentMethods": [
+          "AT_THE_PROPERTY"
+        ],
+        "total": {
+          "value": 2000.00,
+          "currency": "ARS"
+        },
+        "firstBookingEnabled": false,
+        "firstBookingFeeAmount": null,
+        "status": "PUBLISHED",
+        "listedInHome": true,
+        "active": true,
+        "createdAt": "2024-06-30T19:37:41"
+      },
+      "status": "CANCELLED_BY_SELLER",
       "startsAt": "2024-09-06T17:00:00",
       "timezone": "America/Argentina/Buenos_Aires",
       "durationInMinutes": 30,
