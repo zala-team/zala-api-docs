@@ -16,7 +16,7 @@ Want to get started with API integration? Here's a quick check list:
 Making a request
 ----------------
 
-All URLs start with `https://api.zala.app/v1/{business_id}`. **SSL only**. The path is prefixed with the business id and
+All URLs start with `https://api.zala.app/v1/{business_id}` or with `https://sandbox.zala.app/v1/{business_id}`. **SSL only**. The path is prefixed with the business id and
 the API version.
 If we change the API in backward-incompatible ways, we'll bump the version marker and maintain stable support for the
 old URLs.
@@ -60,7 +60,7 @@ If you don't supply this header, you will get a `400 Bad Request` response.
 Just JSON
 -----------------
 
-All data is sent and received as JSON. Our format is to have no root element and we use camel\_case to describe
+All data is sent and received as JSON. Our format is to have no root element and we use camelCase to describe
 attribute keys. This means that you have to send `Content-Type: application/json; charset=utf-8` when POSTing or PUTing
 data into Zala.
 
@@ -118,7 +118,7 @@ curl -H 'Authentication: bearer ACCESS_TOKEN ' \
   https://api.zala.app/v1/acme_business/orders?page=2&per_page=100
 ```
 
-Note that page numbering is 1-based and that ommiting the `page` parameter will return the first page.
+Note that page numbering is 1-based and that omitting the `page` parameter will return the first page.
 
 To check the total count of the results you can use the `X-Total-Count` header:
 

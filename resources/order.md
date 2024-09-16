@@ -25,6 +25,7 @@ An order is created when a customer completes the checkout process.
 | updatedAt        | Date when the Order was last updated in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                                                                                |
 
 #### Booking
+
 The `bookings` field has the following contents:
 
 | Property          | Explanation                                                                                                                             |
@@ -40,17 +41,18 @@ The `bookings` field has the following contents:
 | durationInMinutes | Numeric value of how much minutes the booking should last                                                                               |
 | subtotal          | Value charged for this booking in Money Format without other fees                                                                       |
 | timesRescheduled  | Numeric amount of times this particular booking was rescheduled                                                                         |
-| createdAt        | Date when the Order was created in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                                                                                     |
-| updatedAt        | Date when the Order was last updated in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                                                                                |
+| createdAt         | Date when the Order was created in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                                             |
+| updatedAt         | Date when the Order was last updated in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                                        |
 
 #### Payment Details
 
 The `payment_details` field has the following contents:
-| Property| Type | Explanation |
-|--|--|--|
-|method| String |Payment method selected.|
-|credit_card_company| String |Credit card company.|
-|installments| Integer |The unique numeric identifier for the promotional discount.|
+
+| Property            | Type    | Explanation                                                 |
+|---------------------|---------|-------------------------------------------------------------|
+| method              | String  | Payment method selected.                                    |
+| credit_card_company | String  | Credit card company.                                        |
+| installments        | Integer | The unique numeric identifier for the promotional discount. |
 
 ## Endpoints
 
@@ -58,13 +60,17 @@ The `payment_details` field has the following contents:
 
 Receive a list of all Orders.
 
-| Parameter   | Explanation                                                                                                              |
-|-------------|--------------------------------------------------------------------------------------------------------------------------|
-| status      | Show Orders with a given state. Possible values are "any" (default), "placed", "cancelled" or "paid" or "partially_paid" |
-| customerIds | Restrict results to the specified customer IDs (comma-separated)                                                         |
-| page        | Page to show                                                                                                             |
-| size        | Amount of results per page                                                                                               |
-| q           | Search Orders by the given number; or containing the given text in the customer name or email                            |
+| Parameter    | Explanation                                                                                                              |
+|--------------|--------------------------------------------------------------------------------------------------------------------------|
+| status       | Show Orders with a given state. Possible values are "any" (default), "placed", "cancelled" or "paid" or "partially_paid" |
+| customerIds  | Restrict results to the specified customer IDs (comma-separated)                                                         |
+| createdAtMin | Show Orders created after date (inclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                      |
+| createdAtMax | Show Orders created before date (exclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                     |
+| updatedAtMin | Show Orders last updated after date (inclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                 |
+| updatedAtMax | Show Orders last updated before date (exclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                |
+| page         | Page to show                                                                                                             |
+| size         | Amount of results per page                                                                                               |
+| q            | Search Orders by the given number; or containing the given text in the customer name or email                            |
 
 #### GET /orders
 
