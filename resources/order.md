@@ -8,6 +8,8 @@ An order is created when a customer completes the checkout process.
 >
 > [Get an order](#GET-ordersid)
 >
+> [Register an order payment](#POST-ordersidpayments)
+>
 > [Cancel an order](#POST-ordersidcancel)
 
 ## Properties
@@ -46,15 +48,20 @@ The `bookings` field has the following contents:
 | createdAt         | Date when the Order was created in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                                             |
 | updatedAt         | Date when the Order was last updated in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                                        |
 
-#### Payment Details
+#### Payment
 
-The `payment_details` field has the following contents:
+The `payment` field has the following contents:
 
-| Property            | Type    | Explanation                                                 |
-|---------------------|---------|-------------------------------------------------------------|
-| method              | String  | Payment method selected.                                    |
-| credit_card_company | String  | Credit card company.                                        |
-| installments        | Integer | The unique numeric identifier for the promotional discount. |
+| Property     | Type    | Explanation                                                                                                                 |
+|--------------|---------|-----------------------------------------------------------------------------------------------------------------------------|
+| id           | String  | Unique UUID identifier of the Payment.                                                                                      |
+| amount       | Money   | Amount paid or refunded.                                                                                                    |
+| type         | String  | Show if this was a payment or a refund. Values could be `PAYMENT` or `REFUND`                                               |
+| refunded     | Boolean | If payment was refunded the value will be `true`                                                                            |
+| privateNote  | String  | If the business recorded this payment using manually triggers it could enter a description of the reason                    |
+| providerType | String  | The provider who processed the payment Values could be `MERCADO_PAGO`, `MERCADO_PAGO_API`, `ZALA_BUSINESS`, `EXTERNAL_APP`  |
+| providerId   | String  | If providerId is `EXTERNAL_APP` this field will contain the id of the app who may the payment. Otherwise will be `internal` |
+| createdAt    | String  | Date when the Order was created in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                                 |
 
 ## Endpoints
 
@@ -286,15 +293,141 @@ Receive a single Order
 }
 ```
 
+### POST /orders/{id}/payments
+
+Register an order payment that were made to the business outside of Zala's payments providers
+
+| Parameter   | Explanation                                                                                                        |
+|-------------|--------------------------------------------------------------------------------------------------------------------|
+| amount      | The amount paid to the business by the customer. Should be greater than `zero`                                     |
+| currency    | Only supported value is `ARS`                                                                                      |
+| flagAsPaid  | If `false` the order will be marked as `PARTIALLY_PAID` which means is not complete yet. By default will be `true` |
+| privateNote | A optional private note from the business. Default is `null`                                                       |
+
+#### POST /orders/450789469/payments
+
+`HTTP/1.1 200 OK`
+
+```json
+{
+  "id": 124156,
+  "customer": {
+    "id": "d0906db4-af79-4144-bf0f-2dbede77a15b",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john@doe.com.ar",
+    "birthDate": "2013-08-01",
+    "phone": "+549111111999",
+    "identifier": null,
+    "pets": [
+      {
+        "id": "7e5209fe-8a80-41b8-b1a7-9addfd938029",
+        "name": "Scooby",
+        "metadata": "{\"size\":\"MEDIUM\"}",
+        "type": "DOG",
+        "familyType": "ANIMAL",
+        "createdAt": "2024-08-30T02:32:42"
+      }
+    ]
+  },
+  "status": "PLACED",
+  "paymentType": "AT_THE_PROPERTY",
+  "bookings": [
+    {
+      "id": "5583d0c8-68a1-48b3-b99a-fe1cc64c6f99",
+      "service": {
+        "id": "63cae9e3-44b0-4bd2-8fa5-e5962960aa7c",
+        "venue": {
+          "id": "52e15a31-639a-41fe-ac7e-d41841934aaf",
+          "primary": true,
+          "name": "Downtown",
+          "photoUrl": null,
+          "description": "",
+          "address1": "Av. Siempre Viva 123",
+          "address2": null,
+          "city": "Downtown",
+          "state": "Springfield",
+          "zipCode": "1706",
+          "active": true,
+          "createdAt": "2024-06-30T19:26:46",
+          "venueId": "52e15a31-639a-41fe-ac7e-d41841934aaf"
+        },
+        "venueId": "52e15a31-639a-41fe-ac7e-d41841934aaf",
+        "name": "Acme Service",
+        "description": null,
+        "photoUrl": null,
+        "link": "acme-service",
+        "locationType": "AT_ADDRESS",
+        "pricingType": "PAID",
+        "downPaymentAmount": null,
+        "selectionType": "SIMPLE",
+        "downPaymentType": null,
+        "allowedPaymentMethods": [
+          "AT_THE_PROPERTY"
+        ],
+        "total": {
+          "value": 2000.00,
+          "currency": "ARS"
+        },
+        "firstBookingEnabled": false,
+        "firstBookingFeeAmount": null,
+        "status": "PUBLISHED",
+        "listedInHome": true,
+        "active": true,
+        "createdAt": "2024-06-30T19:37:41"
+      },
+      "status": "PENDING",
+      "startsAt": "2024-09-06T17:00:00",
+      "timezone": "America/Argentina/Buenos_Aires",
+      "durationInMinutes": 30,
+      "subtotal": {
+        "value": 20000.00,
+        "currency": "ARS"
+      },
+      "timesRescheduled": 0,
+      "endsAt": "2024-09-06T17:30:00",
+      "utcStartsAt": "2024-09-06T20:00:00",
+      "utcEndsAt": "2024-09-06T20:30:00",
+      "createdAt": "2024-08-30T02:32:42",
+      "updatedAt": "2024-08-30T02:32:42"
+    }
+  ],
+  "payments": [
+    {
+      "id": "d0906db4-af79-4144-bf0f-2dbede77a15b",
+      "amount": {
+        "value": 20000.00,
+        "currency": "ARS"
+      },
+      "type": "PAYMENT",
+      "refunded": false,
+      "providerType": "EXTERNAL_APP",
+      "providerId": "acme_app",
+      "privateNote": null,
+      "createdAt": "2024-08-30T02:32:42",
+      "updated": "2024-08-30T02:32:42"
+    }
+  ],
+  "total": {
+    "value": 20000.00,
+    "currency": "ARS"
+  },
+  "createdAt": "2024-08-30T02:32:42",
+  "active": true,
+  "guest": false,
+  "firstBookingFee": null,
+  "downPaymentTotal": null
+}
+```
+
 ### POST /orders/{id}/cancel
 
-Cancel a single Order only if none of their bookings have started. 
+Cancel a single Order only if none of their bookings have started.
 
 | Parameter      | Explanation                                                                                        |
 |----------------|----------------------------------------------------------------------------------------------------|
 | notifyCustomer | Notify the customer of the cancellation of their bookings. Default value is `true`                 |
 | refundCustomer | Attempt to refund customer for all charged amount using payment providers. Default value is `true` |
-
 
 #### POST /orders/450789469/cancel
 
