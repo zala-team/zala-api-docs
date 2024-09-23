@@ -175,7 +175,7 @@ API resources
 * [Service Prices](https://github.com/zala-team/zala-api-docs/blob/master/resources/service_price.md)
 * [Service Variant](https://github.com/zala-team/zala-api-docs/blob/master/resources/service_variant.md)
 * [Venue](https://github.com/zala-team/zala-api-docs/blob/master/resources/venue.md)
-* [Webhook](https://github.com/zala-team/zala-api-docs/blob/master/resources/webhook.md)
+* [Webhook (In development)](https://github.com/zala-team/zala-api-docs/blob/master/resources/webhook.md)
 
 Help us make it better
 ----------------------
