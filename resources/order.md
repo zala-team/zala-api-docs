@@ -60,7 +60,7 @@ The `payment` field has the following contents:
 | refunded     | Boolean | If payment was refunded the value will be `true`                                                                            |
 | privateNote  | String  | If the business recorded this payment using manually triggers it could enter a description of the reason                    |
 | providerType | String  | The provider who processed the payment Values could be `MERCADO_PAGO`, `MERCADO_PAGO_API`, `ZALA_BUSINESS`, `EXTERNAL_APP`  |
-| providerId   | String  | If providerId is `EXTERNAL_APP` this field will contain the id of the app who may the payment. Otherwise will be `internal` |
+| providerId   | String  | If providerId is `EXTERNAL_APP` this field will contain the id of the app who may the payment. Otherwise will be `INTERNAL` |
 | createdAt    | String  | Date when the Order was created in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                                 |
 
 ## Endpoints
