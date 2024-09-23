@@ -11,6 +11,8 @@ A Price can be the current or future value of a service when a service is booked
 | price                 | Base price of the service in Money format. `null` if the service use variants                                                                                                                               |
 | firstBookingEnabled   | If the service has an additional fee for the first booking of the [Customer](https://github.com/zala-team/zala-api-docs/blob/master/resources/customer.md). `true` or `false`                               |
 | firstBookingFeeAmount | Price of the additional fee of the service in Money format.                                                                                                                                                 |
+| downPaymentEnabled    | If the service has an upfront fee to be paid at the checkout.                                                                                                                                               |
+| downPaymentPercentage | Percentage of the checkout to be required to be paid upfront at the checkout.                                                                                                                               |
 | downPaymentAmount     | Amount required to be paid upfront to the booking date in Money format. `null` if there is no up-front fee                                                                                                  |
 | variantPrices         | [Variant Price](#variant-price) array of prices of all the [Service Variants](https://github.com/zala-team/zala-api-docs/blob/master/resources/service_variant.md). `Null` if service doesn't use variants. |
 | createdAt             | Date when the Order was created in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                                                                                                                 |
@@ -38,12 +40,12 @@ A Price can be the current or future value of a service when a service is booked
 
 Receive a list of all (current or future) Services prices.
 
-| Parameter   | Explanation                                                                                                         |
-|-------------|---------------------------------------------------------------------------------------------------------------------|
-| currentOnly | If `true` will return just the current price. By default is `false` and all current and future prices are returned. |
-| startsAt    | Show Prices that start after the given date (inclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)    |
-| page        | Page to show                                                                                                        |
-| size        | Amount of results per page                                                                                          |
+| Parameter | Explanation                                                                                                      |
+|-----------|------------------------------------------------------------------------------------------------------------------|
+| current   | If `true` will return just the current price. By default is `false` and all future prices are returned.          |
+| startsAt  | Show Prices that start after the given date (inclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601) |
+| page      | Page to show                                                                                                     |
+| size      | Amount of results per page                                                                                       |
 
 #### GET /services/23987439-2a3d-462c-810b-f6b8e57d4964/prices
 
@@ -61,6 +63,8 @@ Receive a list of all (current or future) Services prices.
       "value": 1000.00,
       "currency": "ARS"
     },
+    "downPaymentEnabled": true,
+    "downPaymentPercentage": null,
     "downPaymentAmount": {
       "value": 2000.00,
       "currency": "ARS"
