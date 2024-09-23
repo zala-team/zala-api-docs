@@ -78,7 +78,7 @@ These are the possible types of client errors on API calls that receive request 
 HTTP/1.1 400 Bad Request
 Content-Length: 34
 
-{"error": "Problems parsing JSON"}
+{"error": "Failed to read request"}
 ```
 
 Server errors

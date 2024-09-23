@@ -293,7 +293,7 @@ Receive a single Order
 }
 ```
 
-### POST /orders/{id}/payments
+### POST /orders/{id}/payments (in development)
 
 Register an order payment that were made to the business outside of Zala's payments providers
 
