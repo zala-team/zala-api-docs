@@ -31,7 +31,7 @@ Assume that your app has:
 
 1. Business with ID acme_business goes to https://zala.app/apps/123/authorize?state=csrf-code
 2. User accepts.
-3. He gets redirected to https://zala.app/?code=xyz&state=csrf-code.
+3. He gets redirected to https://your.redirect.url/?code=xyz&state=csrf-code.
 4. Then you do:
 
 ```sh
@@ -84,7 +84,7 @@ The available scopes for the API are:
 - read_customers
   - Customer
   - Customer Pets
-- read_orders
+- read_orders / write_orders
   - Order
 - read_transactions
   - Transaction
