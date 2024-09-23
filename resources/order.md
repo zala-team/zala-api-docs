@@ -18,8 +18,8 @@ An order is created when a customer completes the checkout process.
 |------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | id               | The unique numeric identifier for the Order.                                                                                                                                    |
 | customer         | [Customer](https://github.com/zala-team/zala-api-docs/blob/master/resources/customer.md) that purchased this Order. Only given if the 'read_customers' scope is set for the app |
-| status           | Order's status. Possible values are "placed", "cancelled", "partially_paid" or "paid"                                                                                           |
-| paymentType      | Type of required payment for the order. Possible values are "AT_THE_PROPERTY", "ONLINE_CHECKOUT","ONLINE_PARTIAL_CHECKOUT"                                                      |
+| status           | Order's status. Possible values are `PLACED`, `CANCELLED`, `PARTIALLY_PAID` or `PAID`                                                                                           |
+| paymentType      | Type of required payment for the order. Possible values are `AT_THE_PROPERTY`, `ONLINE_CHECKOUT`,`ONLINE_PARTIAL_CHECKOUT`                                                      |
 | bookings         | [Bookings](#Booking) All the details of the bookings associated to this order.                                                                                                  |
 | payments         | [Payments](#Payment) All the details of the payment transactions that were recorded in this order.                                                                              |
 | total            | Total price of the order in Money format.                                                                                                                                       |
@@ -36,7 +36,7 @@ The `bookings` field has the following contents:
 |-------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | id                | Booking unique identifier (UUID)                                                                                                        |
 | service           | [Service](https://github.com/zala-team/zala-api-docs/blob/master/resources/service.md) purchased                                        |
-| status            | Status of the booking. Possible values are "PENDING", "IN_PROGRESS", "COMPLETED", "NO_SHOW", "CANCELLED_BY_USER", "CANCELLED_BY_SELLER" |
+| status            | Status of the booking. Possible values are `PENDING`, `IN_PROGRESS`, `COMPLETED`, `NO_SHOW`, `CANCELLED_BY_USER`, `CANCELLED_BY_SELLER` |
 | startsAt          | Date when the Booking will start in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601) using booking timezone                     |
 | endsAt            | Date when the Booking will end in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601) using booking timezone                       |
 | timezone          | Timezone of the Booking in IANA Format                                                                                                  |
@@ -69,16 +69,16 @@ The `payment` field has the following contents:
 
 Receive a list of all Orders.
 
-| Parameter    | Explanation                                                                                                              |
-|--------------|--------------------------------------------------------------------------------------------------------------------------|
-| status       | Show Orders with a given state. Possible values are "any" (default), "placed", "cancelled" or "paid" or "partially_paid" |
-| customerIds  | Restrict results to the specified customer IDs (comma-separated)                                                         |
-| createdAtMin | Show Orders created after date (inclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                      |
-| createdAtMax | Show Orders created before date (exclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                     |
-| updatedAtMin | Show Orders last updated after date (inclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                 |
-| updatedAtMax | Show Orders last updated before date (exclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                |
-| page         | Page to show                                                                                                             |
-| size         | Amount of results per page                                                                                               |
+| Parameter    | Explanation                                                                                                                    |
+|--------------|--------------------------------------------------------------------------------------------------------------------------------|
+| status       | Show Orders with a given state. Possible values are `any` (empty default), `PLACED`, `CANCELLED` or `PAID` or `PARTIALLY_PAID` |
+| customerIds  | Restrict results to the specified customer IDs (comma-separated)                                                               |
+| createdAtMin | Show Orders created after date (inclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                            |
+| createdAtMax | Show Orders created before date (exclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                           |
+| updatedAtMin | Show Orders last updated after date (inclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                       |
+| updatedAtMax | Show Orders last updated before date (exclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                      |
+| page         | Page to show                                                                                                                   |
+| size         | Amount of results per page                                                                                                     |
 
 #### GET /orders
 
