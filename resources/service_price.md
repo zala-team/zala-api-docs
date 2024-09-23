@@ -2,10 +2,6 @@
 
 A Price can be the current or future value of a service when a service is booked in Zala's business.
 
-### GET /services/{service-id}/prices
-
-Receive the list of scheduled prices for a specific service
-
 ## Properties
 
 | Property              | Explanation                                                                                                                                                                                                 |
@@ -49,7 +45,7 @@ Receive a list of all (current or future) Services prices.
 | page        | Page to show                                                                                                        |
 | size        | Amount of results per page                                                                                          |
 
-#### GET /services/23987439-2a3d-462c-810b-f6b8e57d4964/variants
+#### GET /services/23987439-2a3d-462c-810b-f6b8e57d4964/prices
 
 `HTTP/1.1 200 OK`
 
@@ -59,24 +55,28 @@ Receive a list of all (current or future) Services prices.
     "id": "fa04d601-661c-4f4f-aec3-c181adda8652",
     "venueId": "52e15a31-639a-41fe-ac7e-d41841934aaf",
     "serviceId": "23987439-2a3d-462c-810b-f6b8e57d4964",
-    "name": "Acme Service Variant",
-    "description": "A service that does everything and more",
-    "exclusions": [],
-    "parameters": [
+    "price": null,
+    "firstBookingEnabled": true,
+    "firstBookingFeeAmount": {
+      "value": 1000.00,
+      "currency": "ARS"
+    },
+    "downPaymentAmount": {
+      "value": 2000.00,
+      "currency": "ARS"
+    },
+    "variantPrices": [
       {
-        "key": "size",
-        "value": "small",
-        "valueLabel": "Corto"
-      },
-      {
-        "key": "size",
-        "value": "large",
-        "valueLabel": "Largo"
+        "id": "fa04d601-661c-4f4f-aec3-c181adda8652",
+        "price": {
+          "value": 20000.00,
+          "currency": "ARS"
+        },
+        "parameters": null
       }
     ],
-    "active": true,
-    "createdAt": "2013-01-01T05:12:51-03:00",
-    "updatedAt": "2013-01-01T05:12:52-03:00"
+    "createdAt": "2013-04-07T09:11:51-00:00",
+    "updatedAt": "2013-04-08T11:11:51-00:00"
   }
 ]
 ```
