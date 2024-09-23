@@ -40,12 +40,12 @@ A Price can be the current or future value of a service when a service is booked
 
 Receive a list of all (current or future) Services prices.
 
-| Parameter | Explanation                                                                                                      |
-|-----------|------------------------------------------------------------------------------------------------------------------|
-| current   | If `true` will return just the current price. By default is `false` and all future prices are returned.          |
-| startsAt  | Show Prices that start after the given date (inclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601) |
-| page      | Page to show                                                                                                     |
-| size      | Amount of results per page                                                                                       |
+| Parameter | Explanation                                                                                                                                      |
+|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| current   | If `true` will return just the current price. If `false` will return the future prices . By default is `true` and only currentPrice is returned. |
+| startsAt  | Show Prices that start after the given date (inclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                                 |
+| page      | Page to show                                                                                                                                     |
+| size      | Amount of results per page                                                                                                                       |
 
 #### GET /services/23987439-2a3d-462c-810b-f6b8e57d4964/prices
 
