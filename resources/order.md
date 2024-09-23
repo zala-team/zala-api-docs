@@ -80,6 +80,7 @@ Receive a list of all Orders.
 | updatedAtMax | Show Orders last updated before date (exclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                      |
 | page         | Page to show                                                                                                                   |
 | size         | Amount of results per page                                                                                                     |
+| sort         | Sort results by a given field. Possible values are `CREATED_AT_ASC` (default) or `CREATED_AT_DESC`                             |                            |
 
 #### GET /orders
 
