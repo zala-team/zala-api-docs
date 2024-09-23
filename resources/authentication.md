@@ -86,7 +86,7 @@ The available scopes for the API are:
   - Customer Pets
 - read_orders / write_orders
   - Order
-- read_transactions
-  - Transaction
+- read_payments
+  - Payments
 - read_venues
   - Venue
