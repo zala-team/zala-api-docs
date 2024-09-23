@@ -110,7 +110,7 @@ Pagination
 ----------
 
 Requests that return multiple items will be paginated to 30 items by default. You can specify further pages with
-the `page` parameter. You can also set a custom page size up to 200 with the `per_page` parameter.
+the `page` parameter. You can also set a custom page size up to 200 with the `size` parameter.
 
 ```shell
 curl -H 'Authentication: bearer ACCESS_TOKEN ' \
@@ -129,8 +129,8 @@ X-Total-Count: 156
 To check the next and previous links for pagination you can use the `Link` header:
 
 ```
-Link: <https://api.zala.app/v1/acme_business/orders?page=3&per_page=100>; rel="next",
-  <https://api.zala.app/v1/acme_business/orders?page=50&per_page=100>; rel="last"
+Link: <https://api.zala.app/v1/acme_business/orders?page=3&size=100>; rel="next",
+  <https://api.zala.app/v1/acme_business/orders?page=50&size=100>; rel="last"
 ```
 
 The possible `rel` values are:
