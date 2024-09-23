@@ -73,6 +73,7 @@ Receive a list of all Orders.
 |--------------|--------------------------------------------------------------------------------------------------------------------------------|
 | status       | Show Orders with a given state. Possible values are `any` (empty default), `PLACED`, `CANCELLED` or `PAID` or `PARTIALLY_PAID` |
 | customerIds  | Restrict results to the specified customer IDs (comma-separated)                                                               |
+| serviceIds   | Restrict results to the specified services IDs (comma-separated)                                                               |
 | createdAtMin | Show Orders created after date (inclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                            |
 | createdAtMax | Show Orders created before date (exclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                           |
 | updatedAtMin | Show Orders last updated after date (inclusive) [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                       |
