@@ -25,18 +25,18 @@ The authorization flow is pretty standard:
 Assume that your app has:
 
 - id = 123
-- redirection URL = https://www.example.com/
+- redirection URL = https://your.redirect.url/
 - scopes = `read_orders`, `read_services`, `read_transactions`
 - client_secret = <your-client-secret>
 
-1. Business with ID acme_business goes to https://zala.app/apps/123/authorize?state=csrf-code
+1. Business with ID acme_business goes to https://panel.zala.app/apps/123/authorize?state=csrf-code
 2. User accepts.
 3. He gets redirected to https://your.redirect.url/?code=xyz&state=csrf-code.
 4. Then you do:
 
 ```sh
 curl -d '{"clientId": "0000", "clientSecret": "xxxxxxxx", "grantType": "authorization_code", "code": "xxxxxxxx" }' \
--X POST "https://zala.app/apps/authorize/token"
+-X POST "https://api.zala.app/apps/authorize/token"
 ```
 
 and receive:
