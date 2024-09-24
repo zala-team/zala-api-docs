@@ -26,7 +26,7 @@ Assume that your app has:
 
 - id = 123
 - redirection URL = https://your.redirect.url/
-- scopes = `read_orders`, `read_services`, `read_transactions`
+- scopes = `read_orders`, `read_services`, `write_orders`
 - client_secret = <your-client-secret>
 
 1. Business with ID acme_business goes to https://panel.zala.app/apps/123/authorize?state=csrf-code
