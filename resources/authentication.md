@@ -81,7 +81,7 @@ The available scopes for the API are:
 - read_services
   - Service
   - Service Variant
-- read_customers
+- read_customers / write_customers
   - Customer
   - Customer Pets
 - read_orders / write_orders

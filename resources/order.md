@@ -102,7 +102,11 @@ Receive a list of all Orders.
         {
           "id": "7e5209fe-8a80-41b8-b1a7-9addfd938029",
           "name": "Scooby",
-          "metadata": "{\"size\":\"MEDIUM\"}",
+          "sex": "FEMALE",
+          "breed": "Labrador",
+          "weight": 15000.0,
+          "color": "Blanco",
+          "birthDate": "2020-02-04",
           "type": "DOG",
           "familyType": "ANIMAL",
           "createdAt": "2024-08-30T02:32:42"
@@ -212,7 +216,11 @@ Receive a single Order
       {
         "id": "7e5209fe-8a80-41b8-b1a7-9addfd938029",
         "name": "Scooby",
-        "metadata": "{\"size\":\"MEDIUM\"}",
+        "sex": "FEMALE",
+        "breed": "Labrador",
+        "weight": 15000.0,
+        "color": "Blanco",
+        "birthDate": "2020-02-04",
         "type": "DOG",
         "familyType": "ANIMAL",
         "createdAt": "2024-08-30T02:32:42"
@@ -322,7 +330,11 @@ Cancel a single Order only if none of their bookings have started.
       {
         "id": "7e5209fe-8a80-41b8-b1a7-9addfd938029",
         "name": "Scooby",
-        "metadata": "{\"size\":\"MEDIUM\"}",
+        "sex": "FEMALE",
+        "breed": "Labrador",
+        "weight": 15000.0,
+        "color": "Blanco",
+        "birthDate": "2020-02-04",
         "type": "DOG",
         "familyType": "ANIMAL",
         "createdAt": "2024-08-30T02:32:42"

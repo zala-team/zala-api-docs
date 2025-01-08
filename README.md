@@ -170,6 +170,7 @@ API resources
 
 * [Business](https://github.com/zala-team/zala-api-docs/blob/master/resources/business.md)
 * [Customer](https://github.com/zala-team/zala-api-docs/blob/master/resources/customer.md)
+* [Pet](https://github.com/zala-team/zala-api-docs/blob/master/resources/pet.md)
 * [Order](https://github.com/zala-team/zala-api-docs/blob/master/resources/order.md)
 * [Service](https://github.com/zala-team/zala-api-docs/blob/master/resources/service.md)
 * [Service Prices](https://github.com/zala-team/zala-api-docs/blob/master/resources/service_price.md)

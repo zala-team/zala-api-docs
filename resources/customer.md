@@ -7,16 +7,16 @@ trouble of having to provide it at every checkout.
 Properties
 ----------
 
-| Property  | Explanation                                                                                         |
-|-----------|-----------------------------------------------------------------------------------------------------|
-| id        | The UUID identifier for the Customer                                                                |
-| firstName | First name of the Customer                                                                          |
-| lastName  | Last name of the Customer                                                                           |
-| email     | E-mail of the Customer                                                                              |
-| phone     | Phone number of the customer (not necessarily the same as the address's phone)                      |
-| pets      | List of pets of the Customer has registered in this business                                        |
-| createdAt | Date when the Customer was created in [ISO 8601 format](http://en.wikipedia.org/wiki/ISO_8601)      | 
-| updatedAt | Date when the Customer was last updated in [ISO 8601 format](http://en.wikipedia.org/wiki/ISO_8601) |
+| Property  | Explanation                                                                                                           |
+|-----------|-----------------------------------------------------------------------------------------------------------------------|
+| id        | The UUID identifier for the Customer                                                                                  |
+| firstName | First name of the Customer                                                                                            |
+| lastName  | Last name of the Customer                                                                                             |
+| email     | E-mail of the Customer                                                                                                |
+| phone     | Phone number of the customer (not necessarily the same as the address's phone)                                        |
+| pets      | List of Customer [Pet](https://github.com/zala-team/zala-api-docs/blob/master/resources/pet.md)'s that has registered |
+| createdAt | Date when the Customer was created in [ISO 8601 format](http://en.wikipedia.org/wiki/ISO_8601)                        | 
+| updatedAt | Date when the Customer was last updated in [ISO 8601 format](http://en.wikipedia.org/wiki/ISO_8601)                   |
 
 Endpoints
 ---------
