@@ -10,6 +10,8 @@ An order is created when a customer completes the checkout process.
 >
 > [Register an order payment](#POST-ordersidpayments)
 >
+> [Register a no-show](#PUT-ordersidbookingsidno-show)
+>
 > [Cancel an order](#POST-ordersidcancel)
 
 ## Properties
@@ -32,21 +34,22 @@ An order is created when a customer completes the checkout process.
 
 The `bookings` field has the following contents:
 
-| Property          | Explanation                                                                                                                             |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| id                | Booking unique identifier (UUID)                                                                                                        |
-| service           | [Service](https://github.com/zala-team/zala-api-docs/blob/master/resources/service.md) purchased                                        |
-| status            | Status of the booking. Possible values are `PENDING`, `IN_PROGRESS`, `COMPLETED`, `NO_SHOW`, `CANCELLED_BY_USER`, `CANCELLED_BY_SELLER` |
-| startsAt          | Date when the Booking will start in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601) using booking timezone                     |
-| endsAt            | Date when the Booking will end in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601) using booking timezone                       |
-| timezone          | Timezone of the Booking in IANA Format                                                                                                  |
-| utcStartsAt       | Date when the Booking will start in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601) using UTC timezone                         |
-| utcEndsAt         | Date when the Booking will end in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601) using UTC timezone                           |
-| durationInMinutes | Numeric value of how much minutes the booking should last                                                                               |
-| subtotal          | Value charged for this booking in Money Format without other fees                                                                       |
-| timesRescheduled  | Numeric amount of times this particular booking was rescheduled                                                                         |
-| createdAt         | Date when the Order was created in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                                             |
-| updatedAt         | Date when the Order was last updated in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                                        |
+| Property          | Explanation                                                                                                                                          |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| id                | Booking unique identifier (UUID)                                                                                                                     |
+| service           | [Service](https://github.com/zala-team/zala-api-docs/blob/master/resources/service.md) purchased                                                     |
+| professional      | [Professional](https://github.com/zala-team/zala-api-docs/blob/master/resources/professional.md) who will give the service in behalf of the business |
+| status            | Status of the booking. Possible values are `PENDING`, `IN_PROGRESS`, `COMPLETED`, `NO_SHOW`, `CANCELLED_BY_USER`, `CANCELLED_BY_SELLER`              |
+| startsAt          | Date when the Booking will start in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601) using booking timezone                                  |
+| endsAt            | Date when the Booking will end in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601) using booking timezone                                    |
+| timezone          | Timezone of the Booking in IANA Format                                                                                                               |
+| utcStartsAt       | Date when the Booking will start in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601) using UTC timezone                                      |
+| utcEndsAt         | Date when the Booking will end in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601) using UTC timezone                                        |
+| durationInMinutes | Numeric value of how much minutes the booking should last                                                                                            |
+| subtotal          | Value charged for this booking in Money Format without other fees                                                                                    |
+| timesRescheduled  | Numeric amount of times this particular booking was rescheduled                                                                                      |
+| createdAt         | Date when the Order was created in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                                                          |
+| updatedAt         | Date when the Order was last updated in [ISO 8601 format](http://es.wikipedia.org/wiki/ISO_8601)                                                     |
 
 #### Payment
 
@@ -158,6 +161,14 @@ Receive a list of all Orders.
           "listedInHome": true,
           "active": true,
           "createdAt": "2024-06-30T19:37:41"
+        },
+        "professional": {
+          "id": "casper76-56ce-4cfc-98e2-cecf10daaa5",
+          "name": "Agustina Gonzalez",
+          "displayName": "Peluquera: Agustina Gonzalez",
+          "prefix": "Peluquera:",
+          "createdAt": "2024-08-25T19:14:51Z",
+          "updatedAt": "2024-08-25T19:14:51Z"
         },
         "status": "PENDING",
         "startsAt": "2024-09-06T17:00:00",
@@ -273,7 +284,161 @@ Receive a single Order
         "active": true,
         "createdAt": "2024-06-30T19:37:41"
       },
+      "professional": {
+        "id": "casper76-56ce-4cfc-98e2-cecf10daaa5",
+        "name": "Agustina Gonzalez",
+        "displayName": "Peluquera: Agustina Gonzalez",
+        "prefix": "Peluquera:",
+        "createdAt": "2024-08-25T19:14:51Z",
+        "updatedAt": "2024-08-25T19:14:51Z"
+      },
       "status": "PENDING",
+      "startsAt": "2024-09-06T17:00:00",
+      "timezone": "America/Argentina/Buenos_Aires",
+      "durationInMinutes": 30,
+      "subtotal": {
+        "value": 20000.00,
+        "currency": "ARS"
+      },
+      "timesRescheduled": 0,
+      "endsAt": "2024-09-06T17:30:00",
+      "utcStartsAt": "2024-09-06T20:00:00",
+      "utcEndsAt": "2024-09-06T20:30:00",
+      "createdAt": "2024-08-30T02:32:42",
+      "updatedAt": "2024-08-30T02:32:42"
+    }
+  ],
+  "payments": [],
+  "total": {
+    "value": 20000.00,
+    "currency": "ARS"
+  },
+  "createdAt": "2024-08-30T02:32:42",
+  "active": true,
+  "guest": false,
+  "firstBookingFee": null,
+  "downPaymentTotal": null
+}
+```
+
+### POST /orders/{id}/payments
+
+Register a payment that was made in the business outside a Zala transaction.
+
+| Parameter     | Explanation                                                                                                                                     |
+|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| amount        | Total amount of the payment in Money format.                                                                                                    |
+| allowOverflow | Flag to specify if we will allow an amount greater than the order value. If false and an overflow happens a bad request error will be returned. |
+
+#### POST /orders/450789469/payments
+
+```json
+{
+  "amount": {
+    "value": "20000",
+    "currency": "ARS"
+  },
+  "allowOverflow": false
+}
+```
+
+##### Response
+
+`HTTP/1.1 200 OK`
+
+### PUT /orders/{id}/bookings/{id}/no-show
+
+Register the no-show of a single Booking.
+
+| Parameter  | Explanation |
+|------------|-------------|
+| Empty json |             |
+
+#### PUT /orders/450789469/bookings/5583d0c8-68a1-48b3-b99a-fe1cc64c6f99/no-show
+
+`HTTP/1.1 200 OK`
+
+```json
+{
+  "id": 124156,
+  "customer": {
+    "id": "d0906db4-af79-4144-bf0f-2dbede77a15b",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john@doe.com.ar",
+    "birthDate": "2013-08-01",
+    "phone": "+549111111999",
+    "identifier": null,
+    "pets": [
+      {
+        "id": "7e5209fe-8a80-41b8-b1a7-9addfd938029",
+        "name": "Scooby",
+        "sex": "FEMALE",
+        "breed": "Labrador",
+        "weight": 15000.0,
+        "color": "Blanco",
+        "birthDate": "2020-02-04",
+        "type": "DOG",
+        "familyType": "ANIMAL",
+        "createdAt": "2024-08-30T02:32:42"
+      }
+    ]
+  },
+  "status": "PARTIALLY_PAID",
+  "paymentType": "AT_THE_PROPERTY",
+  "bookings": [
+    {
+      "id": "5583d0c8-68a1-48b3-b99a-fe1cc64c6f99",
+      "service": {
+        "id": "63cae9e3-44b0-4bd2-8fa5-e5962960aa7c",
+        "venue": {
+          "id": "52e15a31-639a-41fe-ac7e-d41841934aaf",
+          "primary": true,
+          "name": "Downtown",
+          "photoUrl": null,
+          "description": "",
+          "address1": "Av. Siempre Viva 123",
+          "address2": null,
+          "city": "Downtown",
+          "state": "Springfield",
+          "zipCode": "1706",
+          "active": true,
+          "createdAt": "2024-06-30T19:26:46",
+          "venueId": "52e15a31-639a-41fe-ac7e-d41841934aaf"
+        },
+        "venueId": "52e15a31-639a-41fe-ac7e-d41841934aaf",
+        "name": "Acme Service",
+        "description": null,
+        "photoUrl": null,
+        "link": "acme-service",
+        "locationType": "AT_ADDRESS",
+        "pricingType": "PAID",
+        "downPaymentAmount": null,
+        "selectionType": "SIMPLE",
+        "downPaymentType": null,
+        "allowedPaymentMethods": [
+          "AT_THE_PROPERTY"
+        ],
+        "total": {
+          "value": 2000.00,
+          "currency": "ARS"
+        },
+        "firstBookingEnabled": false,
+        "firstBookingFeeAmount": null,
+        "status": "PUBLISHED",
+        "listedInHome": true,
+        "active": true,
+        "createdAt": "2024-06-30T19:37:41"
+      },
+      "professional": {
+        "id": "casper76-56ce-4cfc-98e2-cecf10daaa5",
+        "name": "Agustina Gonzalez",
+        "displayName": "Peluquera: Agustina Gonzalez",
+        "prefix": "Peluquera:",
+        "createdAt": "2024-08-25T19:14:51Z",
+        "updatedAt": "2024-08-25T19:14:51Z"
+      },
+      "status": "NO_SHOW",
       "startsAt": "2024-09-06T17:00:00",
       "timezone": "America/Argentina/Buenos_Aires",
       "durationInMinutes": 30,
@@ -394,6 +559,14 @@ Cancel a single Order only if none of their bookings have started.
       "subtotal": {
         "value": 20000.00,
         "currency": "ARS"
+      },
+      "professional": {
+        "id": "casper76-56ce-4cfc-98e2-cecf10daaa5",
+        "name": "Agustina Gonzalez",
+        "displayName": "Peluquera: Agustina Gonzalez",
+        "prefix": "Peluquera:",
+        "createdAt": "2024-08-25T19:14:51Z",
+        "updatedAt": "2024-08-25T19:14:51Z"
       },
       "timesRescheduled": 0,
       "endsAt": "2024-09-06T17:30:00",
